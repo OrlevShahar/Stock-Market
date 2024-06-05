@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+    initial-scale=1.0">
+    <title>Get Stock Analsis</title>
+    <link href="{{ url_for('static', filename='style.css')}}" rel="stylesheet"/>
+</head>
+<body>
+    <h1>Get Stock Analsis</h1>
+    <form action="/stock">
+        <input type="text" name="Stock name" id="Stock"
+        placeholder="Enter a stock name"/>
+        <button type="submit">submit</button>
+    </form>
+</body>
+</html>
