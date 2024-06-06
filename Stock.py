@@ -11,7 +11,7 @@ class Stock:
         self.change_date_dict - a mapping of the stock by its daily change
     """
     def __init__(self, stock_json):
-        self.name = stock_json['Meta Data']["2. Symbol"]
+        self.name = stock_json["Meta Data"]["2. Symbol"]
         self.update = stock_json['Meta Data']["3. Last Refreshed"]
         self.stock_array = []
         self.change_date_dict = {}
