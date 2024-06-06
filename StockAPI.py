@@ -8,19 +8,29 @@ load_dotenv()
 
 def get_stock_market(stock_name = "TSCO.LON"):
     file_path = f"{stock_name}.txt"
+    print(file_path)
+    
     if os.path.exists(file_path):
+        print("im hear2")
         with open(file_path, 'r') as file: 
             data = json.load(file)
         
     else:
-        #the key is UFIT9YCNQS2J1C5G
-        url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={stock_name}.LON&outputsize=full&apikey={os.getenv("API_KEY")}'
-        stock_data = requests.get(url).json()
+        #the key is 5JDKHENL5MU9YQA0
+        print("im hear")
+        
+        url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={stock_name}&apikey={os.getenv("API_KEY")}'
+        print(url)
+        r = requests.get(url)
+        data = r.json()
+        print(data)
+        
         with open(file_path, 'w') as file:
             json.dump(data, file, indent=4)
-    stock_market = Stock(stock_data)
+    stock_market = Stock(data)
 
     return stock_market
+    
 
 
 if __name__ == "__main__":
