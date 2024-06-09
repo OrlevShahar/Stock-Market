@@ -1,11 +1,11 @@
 import unittest
-from Stock import Stock
+from src.stock import Stock
 import json
 
 class TestStock(unittest.TestCase):
 
     def setUp(self):
-        file_path = 'tester.txt'
+        file_path = file_path = "src/tests/data/tester.txt"
         with open(file_path, 'r') as file: 
             self.data = json.load(file)
         self.stock1 = Stock(self.data)
