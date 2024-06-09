@@ -1,4 +1,4 @@
-from Stock import Stock
+from stock import Stock
 """I really have a dilemma whether to turn this into a class. I think at this stage I'll leave it as is, 
 but after I finish with the Flask topic and the software testing, I might revisit this.
 Meanwhile, I am running the day_statistics function to add some substance to the project.
@@ -8,19 +8,19 @@ Meanwhile, I am running the day_statistics function to add some substance to the
 """Meanwhile, day_statistics is in its very early stages. 
 It currently returns the number of stock market gains versus losses on dates with the same change as today.
 """
-def day_statistics(stock):
-    date_array = Stock.get_stock_array(stock)
-    success = 0
+def stock_score(stock):
+    date_array = stock.get_stock_array()
+    score = 0
     update_information = stock.get_update_information()
     for date in stock.change_date_dict[update_information["change"]]:
         index = date_binary_search(date, date_array)
         if (index != -1 and index + 1 < len(date_array)):
             next_day = date_array[index+1]
             if (next_day['change'] > 1):
-                success = success + 1
+                score = score + 1
             else:
-                success = success - 1
-    return success
+                score = score - 1
+    return score
 
 
 

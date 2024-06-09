@@ -1,11 +1,11 @@
 import unittest
-from Stock import Stock
-import StockStatistics
+from src.stock import Stock
+from src.stock_statistics import day_statistics
 import json
 
 class TestStockStatistics(unittest.TestCase):
     def setUp(self):
-        file_path = 'tester.txt'
+        file_path = file_path = "src/tests/data/tester.txt"
         with open(file_path, 'r') as file: 
             self.data = json.load(file)
         self.stock1 = Stock(self.data)
@@ -15,8 +15,8 @@ class TestStockStatistics(unittest.TestCase):
         pass
 
     def test_day_statistics(self):
-        self.assertIsNotNone(StockStatistics.day_statistics(self.stock1))
-        self.assertEqual(StockStatistics.day_statistics(self.stock1), 1)
+        self.assertIsNotNone(day_statistics(self.stock1))
+        self.assertEqual(day_statistics(self.stock1), 1)
 
 
 

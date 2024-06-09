@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-from Stock import Stock
+from stock import Stock
 import json
 import requests
 import os
@@ -7,7 +7,8 @@ import os
 load_dotenv()
 
 def get_stock_market(stock_name = "TSCO.LON"):
-    file_path = f"{stock_name}.txt"
+        
+    file_path = f"server/src/data/{stock_name}.txt"
     print(file_path)
     
     if os.path.exists(file_path):
@@ -15,7 +16,8 @@ def get_stock_market(stock_name = "TSCO.LON"):
             data = json.load(file)
         
     else:
-        #the key is 5JDKHENL5MU9YQA0
+        # APIKEY is from www.alphavantage.co
+        # will add cache in the near future
         url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={stock_name}&apikey={os.getenv("API_KEY")}'
         print(url)
         r = requests.get(url)
@@ -23,6 +25,7 @@ def get_stock_market(stock_name = "TSCO.LON"):
         
         with open(file_path, 'w') as file:
             json.dump(data, file, indent=4)
+
     stock_market = Stock(data)
 
     return stock_market
