@@ -1,4 +1,5 @@
 import os
+import warnings
 from flask import Flask, render_template, request
 from stock_API import get_stock_market  
 from stock import Stock 
@@ -26,8 +27,8 @@ def create_app(test_config=None):
 
     try:
         os.makedirs(app.instance_path)
-    except OSError:
-        pass
+    except OSError as e:
+        warnings.warn('fail to create instance path', RuntimeWarning)
 
     @app.route('/')
     @app.route('/index')

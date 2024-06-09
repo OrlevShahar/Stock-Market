@@ -1,6 +1,6 @@
 import unittest
 from src.stock import Stock
-from src.stock_statistics import day_statistics
+from src.stock_statistics import stock_score
 import json
 
 class TestStockStatistics(unittest.TestCase):
@@ -15,8 +15,8 @@ class TestStockStatistics(unittest.TestCase):
         pass
 
     def test_day_statistics(self):
-        self.assertIsNotNone(day_statistics(self.stock1))
-        self.assertEqual(day_statistics(self.stock1), 1)
+        self.assertIsNotNone(stock_score(self.stock1))
+        self.assertEqual(stock_score(self.stock1), 1)
 
 
 

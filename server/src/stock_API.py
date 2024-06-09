@@ -21,7 +21,7 @@ def get_stock_market(stock_name):
         # APIKEY is from www.alphavantage.co
         # will add cache in the near future
         url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={stock_name}&apikey={os.getenv("API_KEY")}'
-        print(url)
+        logging.info(f"the url is: {url}")
         r = requests.get(url)
         data = r.json()
         
