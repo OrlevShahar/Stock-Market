@@ -1,11 +1,11 @@
 import os
 from flask import Flask, render_template, request
-from stock_API import get_stock_market  # Adjusted import based on the provided context
-from stock import Stock  # Adjusted import based on the provided context
-from stock_statistics import stock_score  # Import day_statistics
+from stock_API import get_stock_market  
+from stock import Stock 
+from stock_statistics import stock_score  
 
 def create_app(test_config=None):
-    # create and configure the app
+    
     app = Flask(
         __name__,
         instance_relative_config=True,

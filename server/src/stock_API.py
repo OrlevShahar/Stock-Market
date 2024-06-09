@@ -3,13 +3,15 @@ from stock import Stock
 import json
 import requests
 import os
+import logging
+
 
 load_dotenv()
 
-def get_stock_market(stock_name = "TSCO.LON"):
+def get_stock_market(stock_name):
         
     file_path = f"server/src/data/{stock_name}.txt"
-    print(file_path)
+    logging.info(f"the file path is: {file_path}")
     
     if os.path.exists(file_path):
         with open(file_path, 'r') as file: 
