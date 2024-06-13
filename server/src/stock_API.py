@@ -5,15 +5,16 @@ import requests
 import os
 import logging
 
-
+logging.basicConfig(level=logging.INFO)
 load_dotenv()
 
 def get_stock_market(stock_name):
-        
-    file_path = f"server/src/data/{stock_name}.txt"
+    base_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
+    file_path = os.path.join(base_dir, f"{stock_name}.txt")
     logging.info(f"the file path is: {file_path}")
     
     if os.path.exists(file_path):
+        logging.info("Loading data from file.")
         with open(file_path, 'r') as file: 
             data = json.load(file)
         
@@ -24,7 +25,12 @@ def get_stock_market(stock_name):
         logging.info(f"the url is: {url}")
         r = requests.get(url)
         data = r.json()
+        #chack if error in api (it will start in 'Error Message')
+        if 'Error Message' in data:
+            logging.error("Error in API call.")
+            return 'Error Message'
         
+        logging.info("Saving data to file.")
         with open(file_path, 'w') as file:
             json.dump(data, file, indent=4)
 
