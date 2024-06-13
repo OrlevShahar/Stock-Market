@@ -39,12 +39,17 @@ def create_app(test_config=None):
     def get_stock():
         stock_name = request.args.get('stock')
         stock_data = get_stock_market(stock_name)
-        stock_statistics = stock_score(stock_data)
-        return render_template(
-            "stock.html",
-            title=Stock.get_name(stock_data),
-            update_day=Stock.get_update_date(stock_data),
-            invest=(stock_statistics > 0)
-        )
+
+        #chack if error in api 
+        if stock_data == 'Error Message':
+            return render_template("stock_not_found.html", title = stock_name)
+        else:
+            stock_statistics = stock_score(stock_data)
+            return render_template(
+                "stock.html",
+                title=Stock.get_name(stock_data),
+                update_day=Stock.get_update_date(stock_data),
+                invest=(stock_statistics > 0)
+            )
 
     return app
